@@ -15,7 +15,6 @@ class Solution {
                 topoSortUtil(adj, i, vis, list);
             }
         }
-        Collections.reverse(list);
         return list;
     }
     public static void topoSortUtil(ArrayList<ArrayList<Integer>> adj, int curr, boolean[] vis, ArrayList<Integer> list) {
