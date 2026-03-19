@@ -28,30 +28,17 @@ public class Main
             ans.add(path);
             return;
         }
-
-        // D L R U
-        if (isValid(x + 1, y, maze, vis)) {
-            vis[x + 1][y] = true;
-            solve(maze, vis, x + 1, y, path + "D", ans);
-            vis[x + 1][y] = false;
-        }
-
-        if (isValid(x, y - 1, maze, vis)) {
-            vis[x][y - 1] = true;
-            solve(maze, vis, x, y - 1, path + "L", ans);
-            vis[x][y - 1] = false;
-        }
-
-        if (isValid(x, y + 1, maze, vis)) {
-            vis[x][y + 1] = true;
-            solve(maze, vis, x, y + 1, path + "R", ans);
-            vis[x][y + 1] = false;
-        }
-
-        if (isValid(x - 1, y, maze, vis)) {
-            vis[x - 1][y] = true;
-            solve(maze, vis, x - 1, y, path + "U", ans);
-            vis[x - 1][y] = false;
+        
+        int dx[] = {-1, 1, 0, 0}, dy[] = {0, 0, -1, 1};
+        char direction[] = {'U', 'D', 'L', 'R'};
+        
+        for (int i = 0; i < 4; i++) {
+            int newX = x + dx[i], newY = y + dy[i];
+            if (isValid(newX, newY, maze, vis)) {
+                vis[newX][newY] = true;
+                solve(maze, vis, newX, newY, path + direction[i], ans);
+                vis[newX][newY] = false;
+            }
         }
     }
     
